@@ -1,5 +1,6 @@
 import os
 import redis
+import socket
 import json
 import time
 from flask import Flask, render_template, request, jsonify, redirect, url_for
@@ -23,7 +24,7 @@ def init_db():
 def index():
     init_db()
     start_time = time.time()
-    pod_name = os.environ.get('HOSTNAME', 'Unknown-Server')
+    pod_name = socket.gethostname() 
     
     # --- LOGIC CACHING ---
     # Ưu tiên lấy từ Cache (Nhanh)
